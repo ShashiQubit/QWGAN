@@ -30,24 +30,17 @@ import os
 os.environ["CUDA_VISIBLE_DEVICES"] = ""
 
 import matplotlib.pyplot as plt
-
 import numpy as np
-
 from scipy.stats import norm, wasserstein_distance, probplot
-
 from scipy.special import lambertw
-
 from statsmodels.graphics import tsaplots
-
 import statsmodels.api as sm
-
 import time
-
-import random
-
+import cirq, random, sympy
+import tensorflow_quantum as tfq
 import tensorflow as tf
-
-import tensorflow_probability as tfp
+from cirq.contrib.svg import SVGCircuit
+from cirq.circuits import InsertStrategy
 
 import pandas as pd
 
