@@ -863,7 +863,7 @@ NUM_QUBITS = 10  # number of qubits
 NUM_LAYERS = 4  # number of layers for the PQC
 
 # training hyperparameters
-EPOCHS = 100 #3000
+EPOCHS = 3000
 BATCH_SIZE = 10
 
 n_critic = 2 # number of iterations for the critic per epoch
