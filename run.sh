@@ -2,7 +2,7 @@
 #SBATCH -N 1
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=48
-#SBATCH --time=10:00:00
+#SBATCH --time=3-00:00:00
 #SBATCH --partition=small
 #SBATCH --error=%J.err
 #SBATCH --output=%J.out
