@@ -136,25 +136,23 @@ class qGAN(tf.keras.Model):
     #
     ####################################################################################
     def define_critic_model(self, window_length):
-        # Define the initializer with a seed
-        initializer = tf.keras.initializers.RandomUniform(minval=-0.5, maxval=0.5, seed=my_seed)
         model = tf.keras.Sequential()
-        model.add(tf.keras.layers.Conv1D(filters=64, kernel_size=10, strides=1, input_shape=(window_length, 1), padding='same', kernel_initializer=initializer, bias_initializer=initializer))
+        model.add(tf.keras.layers.Conv1D(filters=64, kernel_size=10, strides=1, input_shape=(window_length, 1), padding='same'))
         model.add(tf.keras.layers.LeakyReLU(alpha=0.1))
 
-        model.add(tf.keras.layers.Conv1D(filters=128, kernel_size=10, strides=1, padding='same', kernel_initializer=initializer, bias_initializer=initializer))
+        model.add(tf.keras.layers.Conv1D(filters=128, kernel_size=10, strides=1, padding='same'))
         model.add(tf.keras.layers.LeakyReLU(alpha=0.1))
 
-        model.add(tf.keras.layers.Conv1D(filters=128, kernel_size=10, strides=1, padding='same', kernel_initializer=initializer, bias_initializer=initializer))
+        model.add(tf.keras.layers.Conv1D(filters=128, kernel_size=10, strides=1, padding='same'))
         model.add(tf.keras.layers.LeakyReLU(alpha=0.1))
-
+    
         model.add(tf.keras.layers.Flatten())
-
-        model.add(tf.keras.layers.Dense(32, dtype=tf.float64, kernel_initializer=initializer, bias_initializer=initializer))
+    
+        model.add(tf.keras.layers.Dense(32, dtype=tf.float64))
         model.add(tf.keras.layers.LeakyReLU(alpha=0.1))
         model.add(tf.keras.layers.Dropout(0.2))
-
-        model.add(tf.keras.layers.Dense(1, dtype=tf.float64, kernel_initializer=initializer, bias_initializer=initializer))
+    
+        model.add(tf.keras.layers.Dense(1, dtype=tf.float64))
 
         return model
 
