@@ -549,9 +549,9 @@ def inverse_scale(scaled, p_low, p_high):
 # Hyperparameters
 #
 ##################################################################
-WINDOW_SIZE = 30  # this must be equal to the number of Pauli strings to measure
-NUM_QUBITS = 15  # number of qubits
-NUM_LAYERS = 7  # number of layers for the PQC
+WINDOW_SIZE = 20  # this must be equal to the number of Pauli strings to measure
+NUM_QUBITS = 10  # number of qubits
+NUM_LAYERS = 4  # number of layers for the PQC
 
 # training hyperparameters
 EPOCHS = 1000 #3000
@@ -573,8 +573,8 @@ qgan.compile_QGAN(c_optimizer, g_optimizer)
 # Data pre-processing
 #
 ##################################################################################
-# apply rolling window in transformed normalized log-returns with stride s=1
-gan_data_tf = rolling_window(scaled, WINDOW_SIZE, 1)
+# apply rolling window in transformed normalized log-returns with stride s=5
+gan_data_tf = rolling_window(scaled, WINDOW_SIZE, 5)
 # create TensorFlow datasets
 gan_data = tf.data.Dataset.from_tensor_slices(gan_data_tf)
 # get the number of elements in the dataset
