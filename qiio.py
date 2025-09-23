@@ -549,9 +549,9 @@ def inverse_scale(scaled, p_low, p_high):
 # Hyperparameters
 #
 ##################################################################
-WINDOW_SIZE = 20  # this must be equal to the number of Pauli strings to measure
-NUM_QUBITS = 10  # number of qubits
-NUM_LAYERS = 4  # number of layers for the PQC
+WINDOW_SIZE = 30  # this must be equal to the number of Pauli strings to measure
+NUM_QUBITS = 15  # number of qubits
+NUM_LAYERS = 7  # number of layers for the PQC
 
 # training hyperparameters
 EPOCHS = 1000 #3000
@@ -631,7 +631,7 @@ axes[0].set_ylabel('Loss')
 axes[0].legend()
 axes[0].grid()
 
-emd_avg = np.array(gan.emd_avg)
+emd_avg = np.array(qgan.emd_avg)
 emd_ma = np.convolve(emd_avg, np.ones(window)/window, mode='valid')
 
 axes[1].plot(range(window-1, len(emd_avg)), emd_ma, label='EMD', color='red')
