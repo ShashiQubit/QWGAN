@@ -36,9 +36,7 @@ from cirq.circuits import InsertStrategy
 
 import pandas as pd
 
-# A reproducible seed
-my_seed = 42
-tf.random.set_seed(my_seed)
+
 
 # =============================
 # Load your AWS series (replace with your actual file)
@@ -62,12 +60,6 @@ clipped = np.clip(series, p_low, p_high)
 scaled = (clipped - p_low) / (p_high - p_low) * 2 - 1
 scaled  = tf.convert_to_tensor(scaled)
 #print("Scaled series range:", scaled.min(), scaled.max())
-
-# All seeding should be done at the very beginning of the script or cell.
-my_seed = 42
-tf.random.set_seed(my_seed)
-np.random.seed(my_seed)
-tf.keras.utils.set_random_seed(my_seed) # Recommended for newer TF versions
 
 class qGAN(tf.keras.Model):
 
