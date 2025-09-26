@@ -239,7 +239,7 @@ class qGAN(tf.keras.Model):
         # model input
         q_data_input = tf.keras.Input(shape=(), dtype=tf.dtypes.string)
         # define the tensorflow quantum layer (trainable)
-        generator = tfq.layers.PQC(self.define_generator_circuit(), self.measurements, repetitions=1000)
+        generator = tfq.layers.PQC(self.define_generator_circuit(), self.measurements, repetitions=2000)
         generator_output = generator(q_data_input)
         # tensorflow model
         model = tf.keras.Model(inputs=q_data_input, outputs=generator_output)
@@ -518,13 +518,12 @@ class qGAN(tf.keras.Model):
         #
         ####################################################################################
 
-        bin_edges = np.linspace(-1, 1, num=50)
-        empirical_real, _ = np.histogram(original_data, bins=bin_edges, density=True)
-        empirical_fake, _ = np.histogram(fake_original, bins=bin_edges, density=True)
-        # normalize safely
-        if empirical_real.sum() > 0: empirical_real /= empirical_real.sum()
-        if empirical_fake.sum() > 0: empirical_fake /= empirical_fake.sum()
-        emd = wasserstein_distance(empirical_real, empirical_fake)
+        
+        # replace current histogram-based EMD with this (inside stylized_facts)
+        real_samples = original_data.numpy().ravel()        # 1D array of real samples
+        fake_samples = fake_original.numpy().ravel()        # 1D array of generated samples
+        emd = wasserstein_distance(real_samples, fake_samples)
+
 
         return rmse_acf, rmse_vol, rmse_lev, emd
 
